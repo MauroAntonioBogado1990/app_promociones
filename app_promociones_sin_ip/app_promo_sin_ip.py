@@ -27,12 +27,20 @@ def main(page: ft.Page):
 
     threading.Thread(target=iniciar_servidor, daemon=True).start()
 
-    # Configurar la pantalla inicial
+    # Acción al hacer clic en el botón "Ver Productos"
+    def ver_productos(e):
+        page.launch_url("http://corporate.hcsinergia.com:10017/shop")
+
+    # Configurar la pantalla inicial con el botón adicional
     page.add(
         ft.Column(
             controls=[
                 ft.Text("Bienvenido a la App de Notificaciones Automáticas", size=24),
                 notification_label,
+                ft.ElevatedButton(
+                    text="Ver Productos", 
+                    on_click=ver_productos
+                ),
             ]
         )
     )
